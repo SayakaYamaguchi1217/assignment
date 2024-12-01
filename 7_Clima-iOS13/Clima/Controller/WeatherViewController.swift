@@ -44,6 +44,13 @@ extension WeatherViewController: UITextFieldDelegate {
     
         func searchWeather(){
             if let cityName = searchField.text{
+                // 背景色を変える条件を追加
+                        if cityName.lowercased() == "tokyo" { // 大文字・小文字を区別しないためlowercased()を使用
+                            view.backgroundColor = UIColor.systemYellow // 背景色を黄色に
+                        } else {
+                            view.backgroundColor = UIColor.systemBackground // 他の都市の場合は元の色に戻す
+                        }
+                // 天気データの取得処理を実行
                 weatherManager.fetchWeather(cityName)
             }
         }
