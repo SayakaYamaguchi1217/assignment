@@ -12,6 +12,8 @@ import CoreLocation
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var conditionImageView: UIImageView!
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
@@ -42,18 +44,11 @@ extension WeatherViewController: UITextFieldDelegate {
             searchWeather()
         }
     
-        func searchWeather(){
-            if let cityName = searchField.text{
-                // 背景色を変える条件を追加
-                        if cityName.lowercased() == "tokyo" { // 大文字・小文字を区別しないためlowercased()を使用
-                            view.backgroundColor = UIColor.systemYellow // 背景色を黄色に
-                        } else {
-                            view.backgroundColor = UIColor.systemBackground // 他の都市の場合は元の色に戻す
-                        }
-                // 天気データの取得処理を実行
-                weatherManager.fetchWeather(cityName)
-            }
+    func searchWeather(){
+        if let cityName = searchField.text{
+            weatherManager.fetchWeather(cityName)
         }
+    }
         
         // when keyboard return clicked
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -89,6 +84,13 @@ extension WeatherViewController: WeatherManagerDelegate {
             temperatureLabel.text = weatherModel.temperatureString
             cityLabel.text = weatherModel.cityName
             self.conditionImageView.image = UIImage(systemName: weatherModel.conditionName)
+            
+            
+            if searchField.text == "Tokyo" {
+                self.backgroundImageView.image = UIImage(named: "starbacks") // Tokyoの場合は黄色に変更
+            } else {
+                self.backgroundImageView.image = UIImage(named: "background") // 他の都市は元の背景色
+            }
         }
     }
     
