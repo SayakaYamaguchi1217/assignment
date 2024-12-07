@@ -85,12 +85,22 @@ extension WeatherViewController: WeatherManagerDelegate {
             cityLabel.text = weatherModel.cityName
             self.conditionImageView.image = UIImage(systemName: weatherModel.conditionName)
             
-            
-            if searchField.text == "Tokyo" {
-                self.backgroundImageView.image = UIImage(named: "starbacks") // Tokyoの場合は黄色に変更
-            } else {
-                self.backgroundImageView.image = UIImage(named: "background") // 他の都市は元の背景色
+            switch searchField.text {
+            case "Tokyo":
+                self.backgroundImageView.image = UIImage(named: "starbacks")
+                
+            case "Kyoto":
+                self.backgroundImageView.image = UIImage(named: "pikachu")
+                
+            default:
+                self.backgroundImageView.image = UIImage(named: "background")
             }
+            
+//            if searchField.text == "Tokyo" {
+//                self.backgroundImageView.image = UIImage(named: "starbacks") // Tokyoの場合は背景色をスターバックスの画像にする
+//            } else {
+//                self.backgroundImageView.image = UIImage(named: "background") // 他の都市は元の背景色
+//            }
         }
     }
     
