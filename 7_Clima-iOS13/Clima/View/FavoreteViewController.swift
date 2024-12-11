@@ -1,14 +1,14 @@
 //
-//  WeatherViewController.swift
+//  FavoreteViewController.swift
 //  Clima
 //
-//  Created by p10p093 on 2024/12/11.
+//  Created by p10p093 on 2024/12/07.
 //  Copyright © 2024 App Brewery. All rights reserved.
 //
 
 import UIKit
 
-class WeatherViewController: UIViewController {
+class FavoreteViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
