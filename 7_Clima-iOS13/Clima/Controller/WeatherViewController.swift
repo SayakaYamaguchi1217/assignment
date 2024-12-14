@@ -18,6 +18,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
     
+    @IBAction func DadJokeButton(_ sender: Any) {
+        fetchDadJoke()
+    }
+    
+    @IBOutlet weak var DadJokeLabel: UILabel!
+    
     
     //MARK: Properties
     var weatherManager = WeatherDataManager()
@@ -29,9 +35,41 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         weatherManager.delegate = self
         searchField.delegate = self
+        
+        // 初期設定
+        DadJokeLabel.text = "Tap the button for a Dad Joke!"
     }
+    
+    // APIから親父ギャグを取得するメソッド
+        func fetchDadJoke() {
+            let urlString = "https://icanhazdadjoke.com/"
+            guard let url = URL(string: urlString) else { return }
 
+            // URLRequestの作成
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
 
+            // URLSessionでデータを取得
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Error fetching joke: \(error)")
+                    return
+                }
+
+                guard let data = data else { return }
+                do {
+                    // JSONのデコード
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let joke = json["joke"] as? String {
+                        DispatchQueue.main.async {
+                            self.DadJokeLabel.text = joke // 取得したギャグをUILabelに表示
+                        }
+                    }
+                } catch {
+                    print("Error decoding JSON: \(error)")
+                }
+            }.resume()
+        }
 }
  
 //MARK:- TextField extension
