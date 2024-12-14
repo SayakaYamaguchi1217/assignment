@@ -95,12 +95,6 @@ extension WeatherViewController: WeatherManagerDelegate {
             default:
                 self.backgroundImageView.image = UIImage(named: "background")
             }
-            
-//            if searchField.text == "Tokyo" {
-//                self.backgroundImageView.image = UIImage(named: "starbacks") // Tokyoの場合は背景色をスターバックスの画像にする
-//            } else {
-//                self.backgroundImageView.image = UIImage(named: "background") // 他の都市は元の背景色
-//            }
         }
     }
     
