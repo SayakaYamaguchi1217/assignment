@@ -24,6 +24,11 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var DadJokeLabel: UILabel!
     
+    @IBAction func RandomDogsButton(_ sender: Any) {
+        fetchRandomDogs()
+    }
+    
+    @IBOutlet weak var RandomDogsImage: UIImageView!
     
     //MARK: Properties
     var weatherManager = WeatherDataManager()
@@ -69,6 +74,69 @@ class WeatherViewController: UIViewController {
                     print("Error decoding JSON: \(error)")
                 }
             }.resume()
+        }
+    
+    // APIから犬画像を取得するメソッド
+        func fetchRandomDogs() {
+            let urlString = "https://dog.ceo/api/breeds/image/random"
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL")
+                return
+            }
+            
+            // URLRequestの作成
+            var request = URLRequest(url: url)
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            // URLSessionでデータを取得
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                    } else if let httpResponse = response as? HTTPURLResponse {
+                        print("HTTP Status Code: \(httpResponse.statusCode)")
+                    }
+
+                guard let data = data else { return }
+                do {
+                    // JSONデータをパース
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let imageUrlString = json["message"] as? String,
+                       let imageUrl = URL(string: imageUrlString) {
+                        
+                        print("Image URL: \(imageUrlString)") // デバッグ用ログ
+                                    
+                        // URLから画像を取得
+                        self.loadImage(from: imageUrl)
+                        }
+                } catch {
+                    print("Error parsing JSON: \(error)")
+                }
+            }
+            
+            task.resume()
+        }
+    
+    func loadImage(from url: URL) {
+            // 画像データを取得
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error loading image: \(error)")
+                    return
+                }
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Error decoding image data")
+                    return
+                }
+                
+                // メインスレッドでUIImageViewを更新
+                DispatchQueue.main.async {
+                    print("Image loaded successfully")
+                    self.RandomDogsImage.image = image
+                }
+            }
+            
+            task.resume()
         }
 }
  
