@@ -18,6 +18,10 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
     
+    @IBAction func Button(_ sender: UIButton) {
+        let vc = FavoriteViewController()
+                navigationController?.pushViewController(vc, animated: true)
+    }
     
     //MARK: Properties
     var weatherManager = WeatherDataManager()
