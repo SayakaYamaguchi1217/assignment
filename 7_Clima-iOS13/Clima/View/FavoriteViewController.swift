@@ -58,10 +58,10 @@ extension FavoriteViewController: UITableViewDataSource {
 
     //ここでは、cellのなかに何が入るのかを設定しています。cellはtitleLabelを元々持っているのでそのまま使ってしまいましょう！
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = courseArray[indexPath.section].stationArray[indexPath.row]
+        let cell = UITableViewCell()
+        cell.textLabel?.text = courseArray[indexPath.section].stationArray[indexPath.row]
         
-        return cell!
+        return cell
     }
 
     //ここではセクションの数を設定しています。今回は、路線の数だけ、セクションが必要になります。
