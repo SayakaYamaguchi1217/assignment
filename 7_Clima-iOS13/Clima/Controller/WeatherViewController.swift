@@ -34,6 +34,13 @@ class WeatherViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func city(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let nextVC =  storyboard.instantiateViewController(withIdentifier: "modal")
+            navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    
     //MARK: Properties
     var weatherManager = WeatherDataManager()
     let locationManager = CLLocationManager()
