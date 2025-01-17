@@ -25,7 +25,7 @@ class ThirdViewController: UIViewController {
         super.viewDidLoad()
         
 //         locationManager.delegate = self
-//         weatherManager.delegate = self
+         weatherManager.delegate = self
         
         // Labelへ格納
         self.CityName.text = getName

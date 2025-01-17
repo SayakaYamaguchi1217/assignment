@@ -12,7 +12,7 @@ import UIKit
 struct rail {
     var isShown: Bool
     var railName: String
-    var stationArray: [String]
+    var cityArray: [String]
 }
 
 class FavoriteViewController: UIViewController {
@@ -20,6 +20,7 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        title = "都市一覧"
     }
 
     @IBOutlet weak var tableView: UITableView! {
@@ -30,27 +31,27 @@ class FavoriteViewController: UIViewController {
     }
     
     // privateはclassの中でしか実行できない。
-    private let headerArray: [String] = ["山手線", "東横線", "田園都市線", "常磐線"]
-    private let yamanoteArray: [String] = ["渋谷", "新宿", "池袋"]
-    private let toyokoArray: [String] = ["自由ヶ丘", "日吉"]
-    private let dentoArray: [String] = ["溝の口", "二子玉川"]
-    private let jobanArray: [String] = ["上野"]
+    private let headerArray: [String] = ["EU", "アジア", "オセアニア", "アフリカ"]
+    private let EuropeArray: [String] = ["ベルリン", "アムステルダム", "ロンドン"]
+    private let AsiaArray: [String] = ["東京", "バンコク"]
+    private let OceaniaArray: [String] = ["シドニー", "メルボルン"]
+    private let AfricaArray: [String] = ["ケープタウン"]
     
     //今回使用するモデルの配列
     private lazy var courseArray = [
-        rail(isShown: true, railName: self.headerArray[0], stationArray: self.yamanoteArray),
-        rail(isShown: false, railName: self.headerArray[1], stationArray: self.toyokoArray),
-        rail(isShown: false, railName: self.headerArray[2], stationArray: self.dentoArray),
-        rail(isShown: false, railName: self.headerArray[3], stationArray: self.jobanArray)
+        rail(isShown: true, railName: self.headerArray[0], cityArray: self.EuropeArray),
+        rail(isShown: false, railName: self.headerArray[1], cityArray: self.AsiaArray),
+        rail(isShown: false, railName: self.headerArray[2], cityArray: self.OceaniaArray),
+        rail(isShown: false, railName: self.headerArray[3], cityArray: self.AfricaArray)
     ]
 
 }
 
 extension FavoriteViewController: UITableViewDataSource {
-    //各セッションの中のcellの数をここでセットする。courseArrayの中のstationArrayの中の駅名がいくつあるか数えている。
+    //各セッションの中のcellの数をここでセットする。courseArrayの中のcityArrayの中の都市名がいくつあるか数えている。
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if courseArray[section].isShown {
-            return courseArray[section].stationArray.count
+            return courseArray[section].cityArray.count
         } else {
             return 0
         }
@@ -59,12 +60,12 @@ extension FavoriteViewController: UITableViewDataSource {
     //ここでは、cellのなかに何が入るのかを設定しています。cellはtitleLabelを元々持っているのでそのまま使ってしまいましょう！
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = courseArray[indexPath.section].stationArray[indexPath.row]
+        cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
         
         return cell
     }
 
-    //ここではセクションの数を設定しています。今回は、路線の数だけ、セクションが必要になります。
+    //ここではセクションの数を設定しています。今回は、都市の数だけ、セクションが必要になります。
     func numberOfSections(in tableView: UITableView) -> Int {
         return courseArray.count
     }
@@ -87,6 +88,14 @@ extension FavoriteViewController: UITableViewDelegate {
 
         headerView.tag = section
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
+        let nextView = DetailViewController()
+        nextView.cityNameText = cell.textLabel!.text
+                navigationController?.pushViewController(nextView, animated: true)
     }
 
     //タップされるとこのメソッドが呼ばれます。
