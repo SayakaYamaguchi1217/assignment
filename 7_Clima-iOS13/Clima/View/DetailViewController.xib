@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Clima" customModuleProvider="target">
             <connections>
                 <outlet property="CityNameLabel" destination="4kz-CY-u3U" id="Cgg-j8-uEW"/>
+                <outlet property="backgroundImage" destination="uPy-lO-1SG" id="NsD-SZ-MDE"/>
                 <outlet property="conditionImageView" destination="d33-CF-Rm3" id="k4c-uc-VWP"/>
                 <outlet property="temperatureLabel" destination="gT4-IU-9s7" id="AbB-m0-UFq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-lO-1SG">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-lO-1SG">
                     <rect key="frame" x="-13" y="-16" width="428" height="884"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
