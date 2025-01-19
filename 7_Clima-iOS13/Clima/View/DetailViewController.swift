@@ -49,23 +49,6 @@ class DetailViewController: UIViewController {
         
         title = CityNameLabel.text
         self.searchWeather()
-        
-        // 背景画像を設定
-        let backgroundImageView = UIImageView()
-        backgroundImageView.image = UIImage(named: "backgroundImage") // あなたの画像ファイル名に置き換え
-        backgroundImageView.contentMode = .scaleAspectFill // 画像をアスペクト比を保って広げる
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // 背景画像ビューを追加
-        view.addSubview(backgroundImageView)
-        
-        // 制約を設定して Safe Area を無視し、画面全体に広げる
-        NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
     }
     
     func searchWeather(){

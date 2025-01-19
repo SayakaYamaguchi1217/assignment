@@ -23,9 +23,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-lO-1SG">
-                    <rect key="frame" x="-13" y="-16" width="428" height="884"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uPy-lO-1SG">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.rain" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d33-CF-Rm3">
                     <rect key="frame" x="16" y="153.66666666666666" width="120" height="121.00000000000003"/>
@@ -64,8 +63,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="uPy-lO-1SG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bd5-xD-Qv3"/>
                 <constraint firstItem="d33-CF-Rm3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="F8H-3r-M63"/>
                 <constraint firstItem="d33-CF-Rm3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="94.999999999999972" id="Ya0-Ye-DoL"/>
+                <constraint firstAttribute="trailing" secondItem="uPy-lO-1SG" secondAttribute="trailing" id="blE-Jq-YCg"/>
+                <constraint firstItem="uPy-lO-1SG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eQI-r5-oyL"/>
+                <constraint firstAttribute="bottom" secondItem="uPy-lO-1SG" secondAttribute="bottom" id="lmr-ej-7yj"/>
             </constraints>
             <point key="canvasLocation" x="119.84732824427481" y="-1.4084507042253522"/>
         </view>
