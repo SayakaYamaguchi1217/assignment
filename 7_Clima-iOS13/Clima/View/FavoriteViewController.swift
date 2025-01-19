@@ -19,8 +19,8 @@ class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         title = "都市一覧"
+        tableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
     }
 
     @IBOutlet weak var tableView: UITableView! {
@@ -59,7 +59,7 @@ extension FavoriteViewController: UITableViewDataSource {
 
     //ここでは、cellのなかに何が入るのかを設定しています。cellはtitleLabelを元々持っているのでそのまま使ってしまいましょう！
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! FavoriteTableViewCell
         cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
         
         return cell
