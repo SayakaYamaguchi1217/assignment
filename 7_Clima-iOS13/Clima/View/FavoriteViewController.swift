@@ -94,7 +94,7 @@ extension FavoriteViewController: UITableViewDelegate {
         let cell = UITableViewCell()
         cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
         let nextView = DetailViewController()
-        nextView.cityNameText = cell.textLabel!.text
+        nextView.selectedCity = cell.textLabel!.text
                 navigationController?.pushViewController(nextView, animated: true)
     }
 

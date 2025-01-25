@@ -15,7 +15,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var CityNameLabel: UILabel!
-    var cityNameText: String?
+
+    var selectedCity: String? // 選択された都市を受け取るプロパティ
+    var cityNameText: [String: String] = ["ベルリン": "Berlin", "アムステルダム": "Amsterdam", "ロンドン": "London", "東京": "Tokyo", "バンコク": "Bangkok", "シドニー": "Sydney", "メルボルン": "Melbourne", "ケープタウン": "Cape Town"]
     
     //MARK: Properties
     var weatherManager = WeatherDataManager()
@@ -26,25 +28,12 @@ class DetailViewController: UIViewController {
         
         weatherManager.delegate = self
         
-        if let cityName = cityNameText{
-            if cityName == "ベルリン" {
-                CityNameLabel.text = "Berlin"
-            } else if cityName == "アムステルダム" {
-                CityNameLabel.text = "Amsterdam"
-            } else if cityName == "ロンドン" {
-                CityNameLabel.text = "London"
-            } else if cityName == "東京" {
-                CityNameLabel.text = "Tokyo"
-            } else if cityName == "バンコク" {
-                CityNameLabel.text = "Bangkok"
-            } else if cityName == "シドニー" {
-                CityNameLabel.text = "Sydney"
-            } else if cityName == "メルボルン" {
-                CityNameLabel.text = "Melbourne"
-            } else if cityName == "ケープタウン" {
-                CityNameLabel.text = "Cape Town"
-            }
-            
+        // 選択された都市に基づいて CityNameLabel を設定
+        if let selectedCity = selectedCity,
+           let englishCityName = cityNameText[selectedCity] {
+            CityNameLabel.text = englishCityName
+        } else {
+            CityNameLabel.text = "不明な都市"
         }
         
         title = CityNameLabel.text
