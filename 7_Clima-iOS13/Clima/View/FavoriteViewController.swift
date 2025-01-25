@@ -60,7 +60,7 @@ extension FavoriteViewController: UITableViewDataSource {
     //ここでは、cellのなかに何が入るのかを設定しています。cellはtitleLabelを元々持っているのでそのまま使ってしまいましょう！
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! FavoriteTableViewCell
-        cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
+        cell.label?.text = courseArray[indexPath.section].cityArray[indexPath.row]
         
         return cell
     }
@@ -94,7 +94,7 @@ extension FavoriteViewController: UITableViewDelegate {
         let cell = UITableViewCell()
         cell.textLabel?.text = courseArray[indexPath.section].cityArray[indexPath.row]
         let nextView = DetailViewController()
-        nextView.cityNameText = cell.textLabel!.text
+        nextView.selectedCity = cell.textLabel!.text
                 navigationController?.pushViewController(nextView, animated: true)
     }
 

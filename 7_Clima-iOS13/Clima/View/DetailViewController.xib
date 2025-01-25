@@ -57,7 +57,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" fixedFrame="YES" text="21" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT4-IU-9s7" userLabel="Temperature Label">
                     <rect key="frame" x="126" y="153" width="151" height="161"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="70"/>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="60"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
