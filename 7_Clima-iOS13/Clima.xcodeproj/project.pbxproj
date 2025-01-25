@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		597798B12D34DEEC00F01AF3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */; };
+		597798B22D34DEEC00F01AF3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597798B02D34DEEC00F01AF3 /* DetailViewController.xib */; };
+		5985A8042D3BD25F00A7E8C5 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985A8022D3BD25F00A7E8C5 /* FavoriteTableViewCell.swift */; };
+		5985A8052D3BD25F00A7E8C5 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5985A8032D3BD25F00A7E8C5 /* FavoriteTableViewCell.xib */; };
 		59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */; };
 		59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */; };
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		597798B02D34DEEC00F01AF3 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		5985A8022D3BD25F00A7E8C5 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		5985A8032D3BD25F00A7E8C5 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		7D64259524473AE800F1DD90 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
@@ -101,6 +109,10 @@
 				ADAA27B6231BBFAF00365194 /* Main.storyboard */,
 				59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */,
 				59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */,
+				5985A8022D3BD25F00A7E8C5 /* FavoriteTableViewCell.swift */,
+				5985A8032D3BD25F00A7E8C5 /* FavoriteTableViewCell.xib */,
+				597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */,
+				597798B02D34DEEC00F01AF3 /* DetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,7 +188,9 @@
 				ADAA27CE231BC87F00365194 /* README.md in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				597798B22D34DEEC00F01AF3 /* DetailViewController.xib in Resources */,
 				59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */,
+				5985A8052D3BD25F00A7E8C5 /* FavoriteTableViewCell.xib in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
 				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
 				ADAA27C6231BC02C00365194 /* light_background.pdf in Resources */,
@@ -194,7 +208,9 @@
 				7D6425982451AEA500F1DD90 /* WeatherData.swift in Sources */,
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
 				59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */,
+				5985A8042D3BD25F00A7E8C5 /* FavoriteTableViewCell.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
+				597798B12D34DEEC00F01AF3 /* DetailViewController.swift in Sources */,
 				7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
 			);
