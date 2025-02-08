@@ -25,7 +25,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var DadJokeLabel: UILabel!
     
     @IBAction func RandomDogsButton(_ sender: Any) {
-        fetchRandomDogs()
+        fetchDogImage()
     }
     
     @IBOutlet weak var RandomDogsImage: UIImageView!
@@ -44,6 +44,7 @@ class WeatherViewController: UIViewController {
     //MARK: Properties
     var weatherManager = WeatherDataManager()
     let locationManager = CLLocationManager()
+    let client = APIClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,79 +55,45 @@ class WeatherViewController: UIViewController {
         
         // 初期設定
         DadJokeLabel.text = "Tap the button for a Dad Joke!"
+        
     }
     
     // APIから親父ギャグを取得するメソッド
-        func fetchDadJoke() {
-            let urlString = "https://icanhazdadjoke.com/"
-            guard let url = URL(string: urlString) else { return }
-
-            // URLRequestの作成
-            var request = URLRequest(url: url)
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-            // URLSessionでデータを取得
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    print("Error fetching joke: \(error)")
-                    return
+    func fetchDadJoke() {
+        client.request(
+            url: "https://icanhazdadjoke.com/",
+            headers: ["Accept": "application/json"],
+            responseType: DadJokeResponse.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.DadJokeLabel.text = response.joke // 取得したジョークをラベルに表示
                 }
-
-                guard let data = data else { return }
-                do {
-                    // JSONのデコード
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                       let joke = json["joke"] as? String {
-                        DispatchQueue.main.async {
-                            self.DadJokeLabel.text = joke // 取得したギャグをUILabelに表示
-                        }
-                    }
-                } catch {
-                    print("Error decoding JSON: \(error)")
-                }
-            }.resume()
+            case .failure(let error):
+                print("Error: \(error)")
+            }
         }
+    }
     
     // APIから犬画像を取得するメソッド
-        func fetchRandomDogs() {
-            let urlString = "https://dog.ceo/api/breeds/image/random"
-            guard let url = URL(string: urlString) else {
-                print("Invalid URL")
-                return
-            }
-            
-            // URLRequestの作成
-            var request = URLRequest(url: url)
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            // URLSessionでデータを取得
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let error = error {
-                        print("Error: \(error.localizedDescription)")
-                    } else if let httpResponse = response as? HTTPURLResponse {
-                        print("HTTP Status Code: \(httpResponse.statusCode)")
-                    }
-
-                guard let data = data else { return }
-                do {
-                    // JSONデータをパース
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                       let imageUrlString = json["message"] as? String,
-                       let imageUrl = URL(string: imageUrlString) {
-                        
-                        print("Image URL: \(imageUrlString)") // デバッグ用ログ
-                                    
-                        // URLから画像を取得
-                        self.loadImage(from: imageUrl)
-                        }
-                } catch {
-                    print("Error parsing JSON: \(error)")
+    func fetchDogImage() {
+        client.request(
+            url: "https://dog.ceo/api/breeds/image/random",
+            responseType: DogImageResponse.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                // URLから画像をダウンロードして表示
+                if let imageUrl = URL(string: response.message) {
+                    self.loadImage(from: imageUrl)
                 }
+            case .failure(let error):
+                print("Error: \(error)")
             }
-            
-            task.resume()
         }
-    
+    }
+        
     func loadImage(from url: URL) {
             // 画像データを取得
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -161,11 +128,11 @@ extension WeatherViewController: UITextFieldDelegate {
             searchWeather()
         }
     
-    func searchWeather(){
-        if let cityName = searchField.text{
-            weatherManager.fetchWeather(cityName)
+        func searchWeather() {
+            if let cityName = searchField.text {
+                weatherManager.fetchWeather(cityName)
+            }
         }
-    }
         
         // when keyboard return clicked
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
