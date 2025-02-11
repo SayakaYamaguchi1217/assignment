@@ -18,6 +18,17 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
     
+    @IBAction func DadJokeButton(_ sender: Any) {
+        fetchDadJoke()
+    }
+    
+    @IBOutlet weak var DadJokeLabel: UILabel!
+    
+    @IBAction func RandomDogsButton(_ sender: Any) {
+        fetchDogImage()
+    }
+    
+    @IBOutlet weak var RandomDogsImage: UIImageView!
     @IBAction func Button(_ sender: UIButton) {
         let vc = FavoriteViewController()
                 navigationController?.pushViewController(vc, animated: true)
@@ -26,6 +37,7 @@ class WeatherViewController: UIViewController {
     //MARK: Properties
     var weatherManager = WeatherDataManager()
     let locationManager = CLLocationManager()
+    let client = APIClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +45,70 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         weatherManager.delegate = self
         searchField.delegate = self
+        
+        // 初期設定
+        DadJokeLabel.text = "Tap the button for a Dad Joke!"
+        
     }
-
-
+    
+    // APIから親父ギャグを取得するメソッド
+    func fetchDadJoke() {
+        client.request(
+            url: "https://icanhazdadjoke.com/",
+            headers: ["Accept": "application/json"],
+            responseType: DadJokeResponse.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.DadJokeLabel.text = response.joke // 取得したジョークをラベルに表示
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    // APIから犬画像を取得するメソッド
+    func fetchDogImage() {
+        client.request(
+            url: "https://dog.ceo/api/breeds/image/random",
+            responseType: DogImageResponse.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                // URLから画像をダウンロードして表示
+                if let imageUrl = URL(string: response.message) {
+                    self.loadImage(from: imageUrl)
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+        
+    func loadImage(from url: URL) {
+            // 画像データを取得
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error loading image: \(error)")
+                    return
+                }
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Error decoding image data")
+                    return
+                }
+                
+                // メインスレッドでUIImageViewを更新
+                DispatchQueue.main.async {
+                    print("Image loaded successfully")
+                    self.RandomDogsImage.image = image
+                }
+            }
+            
+            task.resume()
+        }
 }
  
 //MARK:- TextField extension
@@ -48,11 +121,11 @@ extension WeatherViewController: UITextFieldDelegate {
             searchWeather()
         }
     
-    func searchWeather(){
-        if let cityName = searchField.text{
-            weatherManager.fetchWeather(cityName)
+        func searchWeather() {
+            if let cityName = searchField.text {
+                weatherManager.fetchWeather(cityName)
+            }
         }
-    }
         
         // when keyboard return clicked
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -91,13 +164,13 @@ extension WeatherViewController: WeatherManagerDelegate {
             
             switch searchField.text {
             case "Tokyo":
-                self.backgroundImageView.image = UIImage(named: "starbacks")
+                self.backgroundImageView.image = R.image.starbacks()
                 
             case "Kyoto":
-                self.backgroundImageView.image = UIImage(named: "pikachu")
+                self.backgroundImageView.image = R.image.pikachu()
                 
             default:
-                self.backgroundImageView.image = UIImage(named: "background")
+                self.backgroundImageView.image = R.image.background()
             }
         }
     }
