@@ -34,13 +34,6 @@ class WeatherViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func city(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let nextVC =  storyboard.instantiateViewController(withIdentifier: "modal")
-            navigationController?.pushViewController(nextVC, animated: true)
-    }
-    
-    
     //MARK: Properties
     var weatherManager = WeatherDataManager()
     let locationManager = CLLocationManager()
@@ -171,13 +164,13 @@ extension WeatherViewController: WeatherManagerDelegate {
             
             switch searchField.text {
             case "Tokyo":
-                self.backgroundImageView.image = UIImage(named: "starbacks")
+                self.backgroundImageView.image = R.image.starbacks()
                 
             case "Kyoto":
-                self.backgroundImageView.image = UIImage(named: "pikachu")
+                self.backgroundImageView.image = R.image.pikachu()
                 
             default:
-                self.backgroundImageView.image = UIImage(named: "background")
+                self.backgroundImageView.image = R.image.background()
             }
         }
     }
