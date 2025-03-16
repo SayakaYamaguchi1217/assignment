@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD5foiwQJdC8F95aA6oDSYBIk4JHt2uEuw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>153682853988</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.choiysapple.Clima</string>
+	<key>PROJECT_ID</key>
+	<string>pushnotificationsample-a93f6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pushnotificationsample-a93f6.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:153682853988:ios:e5088d42145b6a0e4d5f71</string>
+</dict>
+</plist>
