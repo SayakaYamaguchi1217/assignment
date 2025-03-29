@@ -12,7 +12,7 @@ import FirebaseMessaging
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     
     
@@ -38,17 +38,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         
+        // Firebase Messagingのデリゲートを設定
+        Messaging.messaging().delegate = self
+        
         return true
+        
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
+    // MARK: - FCMトークンの取得
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("FCMトークン: \(fcmToken ?? "なし")")
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
@@ -72,10 +81,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Message ID: \(messageID)")
         }
         
-        // Print full message.
-        print(userInfo)
+        print("📩 プッシュ通知受信:", userInfo)
         
-        completionHandler(UIBackgroundFetchResult.newData)
+        // 🔹 バッジ数を更新
+        updateBadgeCount(from: userInfo)
+        
+        // ここでデータを取得して処理
+        completionHandler(.newData)
+    }
+    
+    // バッジ数を更新する共通メソッド
+    func updateBadgeCount(from userInfo: [AnyHashable: Any]) {
+        print("📩 受信したプッシュ通知データ:", userInfo)
+        
+        if let aps = userInfo["aps"] as? [String: Any],
+           let receivedBadge = aps["badge"] as? Int {
+            print("📩 受信した aps:", aps)
+            print("🔹 受信したバッジ数:", receivedBadge)
+            
+            // 保存されているバッジ数を取得
+            var storedBadge = UserDefaults.standard.integer(forKey: "badge")
+            print("📩 保存されているバッジ数（受信前）: \(storedBadge)")
+            
+            // バッジ数を更新
+            storedBadge = receivedBadge
+            
+            // アプリのアイコンに反映
+            UIApplication.shared.applicationIconBadgeNumber = storedBadge
+            
+            // 新しいバッジ数を保存
+            UserDefaults.standard.set(storedBadge, forKey: "badge")
+            print("🔹 バッジ数更新: \(storedBadge)")
+        }
+        
+        //        if #available(iOS 16.0, *) {
+        //            UNUserNotificationCenter.current().setBadgeCount(badge)
+        //        } else {
+        //            UIApplication.shared.applicationIconBadgeNumber = badge
+        //        }
+    }
+    
+    func resetBadgeCount() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UserDefaults.standard.set(0, forKey: "badge")
+        print("🔹 バッジ数リセット")
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print("📩 アプリがアクティブになったのでバッジリセット")
+        // バッジリセット
+        resetBadgeCount()
     }
     
 }
@@ -91,9 +146,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             print("Message ID: \(messageID)")
         }
         
-        print(userInfo)
+        print("🔹 Remote Notification received: \(userInfo)")
         
-        completionHandler([])
+        // 🔹 受信したプッシュ通知のバッジ数を反映
+        updateBadgeCount(from: userInfo)
+        
+        // 通知を表示（バッジも含む）
+        completionHandler([.alert, .badge, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -103,8 +162,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let messageID = userInfo["gcm.message_id"] {
             print("Message ID: \(messageID)")
         }
+        print("🔹 通知タップ: \(userInfo)")
         
-        print(userInfo)
+        // 🔹 受信したプッシュ通知のバッジ数を反映
+        updateBadgeCount(from: userInfo)
         
         completionHandler()
     }
