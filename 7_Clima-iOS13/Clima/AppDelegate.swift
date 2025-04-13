@@ -113,26 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             UserDefaults.standard.set(storedBadge, forKey: "badge")
             print("🔹 バッジ数更新: \(storedBadge)")
         }
-        
-        //        if #available(iOS 16.0, *) {
-        //            UNUserNotificationCenter.current().setBadgeCount(badge)
-        //        } else {
-        //            UIApplication.shared.applicationIconBadgeNumber = badge
-        //        }
     }
-    
-    func resetBadgeCount() {
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        UserDefaults.standard.set(0, forKey: "badge")
-        print("🔹 バッジ数リセット")
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print("📩 アプリがアクティブになったのでバッジリセット")
-        // バッジリセット
-        resetBadgeCount()
-    }
-    
 }
 
 @available(iOS 10, *)

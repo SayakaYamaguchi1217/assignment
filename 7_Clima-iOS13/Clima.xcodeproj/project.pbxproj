@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		598625512D74829800D55667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598625502D74829800D55667 /* GoogleService-Info.plist */; };
+		59BF20BA2DABE78200B2E86B /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59BF20B92DABE78200B2E86B /* Secrets.plist */; };
 		59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */; };
 		59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */; };
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		598625502D74829800D55667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5991B0712D7D960D00D165D5 /* Clima.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clima.entitlements; sourceTree = "<group>"; };
+		59BF20B92DABE78200B2E86B /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		757072D5BC396E10EAD6387C /* Pods-Clima.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clima.release.xcconfig"; path = "Target Support Files/Pods-Clima/Pods-Clima.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				ADAA27C8231BC3E500365194 /* Controller */,
 				ADAA27B9231BBFB300365194 /* Assets.xcassets */,
 				ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */,
+				59BF20B92DABE78200B2E86B /* Secrets.plist */,
 				598625502D74829800D55667 /* GoogleService-Info.plist */,
 				ADAA27BE231BBFB300365194 /* Info.plist */,
 				ADAA27C5231BC02B00365194 /* dark_background.pdf */,
@@ -208,6 +211,7 @@
 				598625512D74829800D55667 /* GoogleService-Info.plist in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				59BF20BA2DABE78200B2E86B /* Secrets.plist in Resources */,
 				59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
 				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
