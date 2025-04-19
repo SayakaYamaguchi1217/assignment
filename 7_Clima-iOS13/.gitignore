@@ -1,0 +1,5 @@
+# Secret settings
+Secrets.plist
+
+# Firebase 認証情報
+pushnotificationsample-a93f6-firebase-adminsdk-fbsvc-ea98d5700b.json
