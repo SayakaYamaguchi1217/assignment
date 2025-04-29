@@ -92,32 +92,68 @@ class VersionChecker {
         return currentVersion != localVersionString
     }
     
-    //⑦ バージョンが一致しない場合にアップデートを促すアラートを表示
+    //⑦-1 バージョンが一致しない場合にアップデートを促すアラートを表示
     private func showUpdateAlertIfNeeded() {
+        // getTopViewController() で 「現在表示されている画面」 を取得する。もし「画面に表示できるViewController」が取れたら rootViewController という名前で使う。もし取れなかったら、ここで関数を終わらせる（returnする）。
+        // guard を使う理由。Swiftでは、失敗しそうな処理（nilになるかもしれない処理） は先にガードしておくとコードが読みやすくなります。
         guard let rootViewController = getTopViewController() else { return }
         
+        //⑦-2  ここでポップアップの本体を作っています。
+        // UIAlertController で
+        // タイトル：「アップデートが必要です」
+        // メッセージ：「新しいバージョンがApp Storeにあります。アップデートしてください。」
+        // スタイル：.alert（画面の中央に出るタイプ）
         let alertController = UIAlertController(title: "アップデートが必要です", message: "新しいバージョンがApp Storeにあります。アップデートしてください。", preferredStyle: .alert)
 
+        //⑦-3 ボタン（アクション）を作成
+        // 「アップデート」ボタンの作成
+        // UIAlertAction を使って「アップデート」ボタンを作る
+        // title: "アップデート" → ボタンのテキスト、style: .default → 普通のボタンのスタイル
         let updateAction = UIAlertAction(title: "アップデート", style: .default) { _ in
+            //⑦-4 アップデートボタンを押したら、App Store を開く
+            // URL(string: "https://www.apple.com/jp/app-store/") で App Store のURLを作る
             guard let url = URL(string: "https://www.apple.com/jp/app-store/"),
+                  // UIApplication.shared.canOpenURL(url) で URLが開けるか確認
                   UIApplication.shared.canOpenURL(url) else { return }
+            // UIApplication.shared.open(url, options: [:], completionHandler: nil) で App Store を開く
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-
+        
+        //⑦-5 「あとで」ボタンの作成
         let laterAction = UIAlertAction(title: "あとで", style: .cancel, handler: nil)
         
+        //⑦-6 ボタンをアラートに追加
+        // 先ほど作った updateAction と laterAction を アラートに登録します。
+        // これで、アラートに2つのボタンが表示されます。
         alertController.addAction(updateAction)
         alertController.addAction(laterAction)
+        //⑦-7 アラートを画面に表示
+        // present　意味：「別の画面（ViewController）を、今の画面の上に表示する」
         rootViewController.present(alertController, animated: true, completion: nil)
     }
-    //⑧ 表示中の最上位のViewControllerを取得
+    //⑧ 今、画面に「一番手前に表示されているViewController」を見つけたい！
+    // →それがアラート（アップデート通知）を表示するための「土台」になるから
+    // この関数は、「一番手前の画面はどこだ〜？」と階段を登っていくようなもの
+    
+    // 🍰 層構造のイメージ（ケーキみたいな重なり）：
+    // rootViewController（アプリの一番最初の画面）
+    // UINavigationController（画面を次々に push していける入れ物）
+    // UITabBarController（下にタブがある入れ物）
+    // presentedViewController（モーダルで表示された画面）
+    
+    // 引数： デフォルトでアプリの一番下の画面（rootViewController）からスタートします。
+    // UIApplication.shared.windows.first? で現在表示中のウィンドウを取得し、その中の rootViewController を基点にします。
     private func getTopViewController(_ viewController: UIViewController? = UIApplication.shared.windows.first?.rootViewController) -> UIViewController? {
+        // 今のViewControllerはナビゲーションコントローラ？→ 中で今表示されてる画面（visibleViewController）をチェック！
         if let navigationController = viewController as? UINavigationController {
             return getTopViewController(navigationController.visibleViewController)
+            // 今のViewControllerはタブバーコントローラ？→ 今選ばれてる画面（selectedViewController）をチェック！
         } else if let tabBarController = viewController as? UITabBarController, let selected = tabBarController.selectedViewController {
             return getTopViewController(selected)
+            // さらに上に「モーダルで表示された画面」がある？→ それをチェック！
         } else if let presented = viewController?.presentedViewController {
             return getTopViewController(presented)
+            // それらがないなら、それが一番上の画面！
         } else {
             return viewController
         }
