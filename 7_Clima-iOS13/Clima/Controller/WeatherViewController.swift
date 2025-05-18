@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Firebase
+import FirebaseAnalytics
 
 class WeatherViewController: UIViewController {
 
@@ -20,6 +22,10 @@ class WeatherViewController: UIViewController {
     
     @IBAction func DadJokeButton(_ sender: Any) {
         fetchDadJoke()
+        // イベント送信
+            Analytics.logEvent("tap_dad_joke", parameters: [
+                "screenName": "WeatherViewController"
+            ])
     }
     
     @IBOutlet weak var DadJokeLabel: UILabel!
@@ -32,6 +38,12 @@ class WeatherViewController: UIViewController {
     @IBAction func Button(_ sender: UIButton) {
         let vc = FavoriteViewController()
                 navigationController?.pushViewController(vc, animated: true)
+        
+        
+        // イベント送信
+            Analytics.logEvent("tap_favorite_list", parameters: [
+                "screenName": "FavoriteViewController",
+            ])
     }
     
     @IBAction func city(_ sender: UIButton) {
@@ -164,10 +176,18 @@ extension WeatherViewController: UITextFieldDelegate {
 extension WeatherViewController: WeatherManagerDelegate {
     
     func updateWeather(weatherModel: WeatherModel){
+        var cityName = "unknown"
+        
+        // DispatchQueue.main.sync {}とは、「メインスレッドでこの処理を今すぐやって！終わるまで他の処理は全部ストップ！」という意味。
+        // そのため、重い処理・API通信・ログ送信などはメインスレッドでやらないほうがいい。アプリが一瞬固まったり、最悪クラッシュしたりする可能性がある。
+        // メインスレッドで UIアクセス & 値の取得
         DispatchQueue.main.sync {
             temperatureLabel.text = weatherModel.temperatureString
             cityLabel.text = weatherModel.cityName
             self.conditionImageView.image = UIImage(systemName: weatherModel.conditionName)
+            
+            // searchField.text に値が入っていたらそれを使う。もし nil だったら "unknown" を代わりに使う。
+            cityName = searchField.text ?? "unknown"
             
             switch searchField.text {
             case "Tokyo":
@@ -180,6 +200,12 @@ extension WeatherViewController: WeatherManagerDelegate {
                 self.backgroundImageView.image = UIImage(named: "background")
             }
         }
+        
+        // メインスレッド外でログ処理
+        Analytics.logEvent("search_weather", parameters: [
+                "cityName": cityName,
+                "screenName": "WeatherViewController"
+            ])
     }
     
     func failedWithError(error: Error){

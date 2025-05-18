@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAnalytics
 
 // strictとは、値のグループを一つの複合的なデータ型として扱うこと
 struct rail {
@@ -96,6 +98,12 @@ extension FavoriteViewController: UITableViewDelegate {
         let nextView = DetailViewController()
         nextView.selectedCity = cell.textLabel!.text
                 navigationController?.pushViewController(nextView, animated: true)
+        
+        // イベント送信
+            Analytics.logEvent("tap_favorite_city_cell", parameters: [
+                "screenName": "DetailViewController",
+                "city": cell.textLabel!.text ?? "unknown"
+            ])
     }
 
     //タップされるとこのメソッドが呼ばれます。
