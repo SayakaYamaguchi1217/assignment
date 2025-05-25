@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5974F8562DB3A1CE00BA7AE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5974F8552DB3A1CE00BA7AE5 /* GoogleService-Info.plist */; };
+		5974F85B2DB3A30400BA7AE5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5974F85A2DB3A30400BA7AE5 /* FirebaseAnalytics */; };
+		5974F85F2DB3A56B00BA7AE5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5974F85E2DB3A56B00BA7AE5 /* FirebaseAnalytics */; };
+		5974F86A2DB3A5E000BA7AE5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 5974F8692DB3A5E000BA7AE5 /* FirebaseRemoteConfig */; };
+		5974F86E2DB3A73500BA7AE5 /* VersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5974F86D2DB3A73500BA7AE5 /* VersionChecker.swift */; };
 		59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */; };
 		59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */; };
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
@@ -24,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5974F8552DB3A1CE00BA7AE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5974F86D2DB3A73500BA7AE5 /* VersionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionChecker.swift; sourceTree = "<group>"; };
 		59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		7D64259524473AE800F1DD90 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
@@ -47,17 +54,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5974F86A2DB3A5E000BA7AE5 /* FirebaseRemoteConfig in Frameworks */,
+				5974F85F2DB3A56B00BA7AE5 /* FirebaseAnalytics in Frameworks */,
+				5974F85B2DB3A30400BA7AE5 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5974F8682DB3A5E000BA7AE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ADAA27A4231BBFAF00365194 = {
 			isa = PBXGroup;
 			children = (
 				ADAA27CD231BC87F00365194 /* README.md */,
 				ADAA27AF231BBFAF00365194 /* Clima */,
+				5974F8682DB3A5E000BA7AE5 /* Frameworks */,
 				ADAA27AE231BBFAF00365194 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +99,7 @@
 				ADAA27B9231BBFB300365194 /* Assets.xcassets */,
 				ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */,
 				ADAA27BE231BBFB300365194 /* Info.plist */,
+				5974F8552DB3A1CE00BA7AE5 /* GoogleService-Info.plist */,
 				ADAA27C5231BC02B00365194 /* dark_background.pdf */,
 				ADAA27C4231BC02B00365194 /* light_background.pdf */,
 			);
@@ -91,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */,
+				5974F86D2DB3A73500BA7AE5 /* VersionChecker.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,6 +179,9 @@
 				Base,
 			);
 			mainGroup = ADAA27A4231BBFAF00365194;
+			packageReferences = (
+				5974F8592DB3A30400BA7AE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = ADAA27AE231BBFAF00365194 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -180,6 +203,7 @@
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
 				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
 				ADAA27C6231BC02C00365194 /* light_background.pdf in Resources */,
+				5974F8562DB3A1CE00BA7AE5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +218,7 @@
 				7D6425982451AEA500F1DD90 /* WeatherData.swift in Sources */,
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
 				59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */,
+				5974F86E2DB3A73500BA7AE5 /* VersionChecker.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
 				7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
@@ -341,7 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CSW6UY5DJ;
+				DEVELOPMENT_TEAM = 75Z96FJ6QK;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -359,7 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CSW6UY5DJ;
+				DEVELOPMENT_TEAM = 75Z96FJ6QK;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -394,6 +419,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5974F8592DB3A30400BA7AE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5974F85A2DB3A30400BA7AE5 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5974F8592DB3A30400BA7AE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5974F85E2DB3A56B00BA7AE5 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5974F8592DB3A30400BA7AE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5974F8692DB3A5E000BA7AE5 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5974F8592DB3A30400BA7AE5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADAA27A5231BBFAF00365194 /* Project object */;
 }
