@@ -59,7 +59,7 @@ class VersionChecker {
         remoteConfig.fetch(withExpirationDuration: 0) { (status, error) in
             // error があれば print() して、この先には進まない。エラーがなければ次のステップへ
             guard error == nil else {
-                print("error in fetching. value: \(error)")
+                print("error in fetching. value: \(String(describing: error))")
                 return
             }
             // 🔹取得したデータを「使えるようにする」
@@ -83,7 +83,7 @@ class VersionChecker {
     // ⑥　Firebaseから取得したバージョンとローカルのアプリのバージョンを比較し、一致しなければtrueを返す
     private func checkVersion() -> Bool {
         // remoteConfig.configValue(forKey: "current_version")→ Firebase に登録した "current_version"（例: "1.0.1"）を取得
-        let currentVersion = remoteConfig.configValue(forKey: "current_version").stringValue ?? ""
+        let currentVersion = remoteConfig.configValue(forKey: "current_version").stringValue
         // Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")→ 今このアプリにインストールされてる 自分のバージョン番号 を取得
         let localVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         // この2つを 比較して違ってたら true を返す（＝アップデートが必要）
@@ -119,15 +119,11 @@ class VersionChecker {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         
-        //⑦-5 「あとで」ボタンの作成
-        let laterAction = UIAlertAction(title: "あとで", style: .cancel, handler: nil)
-        
-        //⑦-6 ボタンをアラートに追加
-        // 先ほど作った updateAction と laterAction を アラートに登録します。
-        // これで、アラートに2つのボタンが表示されます。
+        //⑦-5 ボタンをアラートに追加
+        // 先ほど作った updateAction を アラートに登録します。
         alertController.addAction(updateAction)
-        alertController.addAction(laterAction)
-        //⑦-7 アラートを画面に表示
+
+        //⑦-6 アラートを画面に表示
         // present　意味：「別の画面（ViewController）を、今の画面の上に表示する」
         rootViewController.present(alertController, animated: true, completion: nil)
     }
