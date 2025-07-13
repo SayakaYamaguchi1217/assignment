@@ -92,33 +92,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: AppsFlyerLibDelegate {
-    
     // Handle Organic/Non-organic installation
     func onConversionDataSuccess(_ data: [AnyHashable: Any]) {
-        print("onConversionDataSuccess data:")
-        for (key, value) in data {
-            print(key, ":", value)
+        guard let isFirstLaunch = data["is_first_launch"] as? Bool, isFirstLaunch else {
+            print("🚫 Not first launch. ConversionData skipped")
+            return
         }
-        if let status = data["af_status"] as? String {
-            if (status == "Non-organic") {
-                if let sourceID = data["media_source"],
-                   let campaign = data["campaign"] {
-                    print("This is a Non-Organic install. Media source: \(sourceID)  Campaign: \(campaign)")
-                }
-            } else {
-                print("This is an organic install.")
+        
+        print("✅ onConversionDataSuccess data (first launch):")
+        for (key, value) in data {
+            print("\(key): \(value)")
+        }
+        
+        if let deepLinkValue = data["deep_link_value"] as? String {
+            print("📦 Conversion deep_link_value: \(deepLinkValue)")
+            
+            switch deepLinkValue.lowercased() {
+            case "favorite":
+                NotificationCenter.default.post(name: NSNotification.Name("navigateToFavorite"), object: nil)
+            default:
+                NotificationCenter.default.post(name: NSNotification.Name("navigateToSearch"), object: deepLinkValue)
             }
-            if let is_first_launch = data["is_first_launch"] as? Bool,
-               is_first_launch {
-                print("First Launch")
-            } else {
-                print("Not First Launch")
-            }
+        } else {
+            print("❌ deep_link_value not found in conversion data")
         }
     }
     
     func onConversionDataFail(_ error: Error) {
-        print("\(error)")
+        print("❌ onConversionDataFail: \(error)")
     }
 }
 
