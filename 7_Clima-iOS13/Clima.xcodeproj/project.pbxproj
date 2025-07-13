@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		595603322DEF25D700B9A986 /* AdjustSdk in Frameworks */ = {isa = PBXBuildFile; productRef = 595603312DEF25D700B9A986 /* AdjustSdk */; };
+		595603342DEF25D700B9A986 /* AdjustWebBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 595603332DEF25D700B9A986 /* AdjustWebBridge */; };
+		59729CB22D465AF6008D3773 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59729CB12D465AF6008D3773 /* APIClient.swift */; };
+		597798B12D34DEEC00F01AF3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */; };
+		597798B22D34DEEC00F01AF3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597798B02D34DEEC00F01AF3 /* DetailViewController.xib */; };
+		5985243F2DF3120D0048E28A /* AppsFlyerLib-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 5985243E2DF3120D0048E28A /* AppsFlyerLib-Static */; };
+		59A073782DD5FE5000BEF3D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59A073772DD5FE5000BEF3D1 /* GoogleService-Info.plist */; };
+		59A0737B2DD5FF5D00BEF3D1 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 59A0737A2DD5FF5D00BEF3D1 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */; };
 		59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */; };
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
@@ -24,6 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		59729CB12D465AF6008D3773 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		597798B02D34DEEC00F01AF3 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		598524402DF577C40048E28A /* Clima.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clima.entitlements; sourceTree = "<group>"; };
+		59A073772DD5FE5000BEF3D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		7D64259524473AE800F1DD90 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
@@ -47,6 +60,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595603342DEF25D700B9A986 /* AdjustWebBridge in Frameworks */,
+				5985243F2DF3120D0048E28A /* AppsFlyerLib-Static in Frameworks */,
+				595603322DEF25D700B9A986 /* AdjustSdk in Frameworks */,
+				59A0737B2DD5FF5D00BEF3D1 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +90,7 @@
 		ADAA27AF231BBFAF00365194 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
+				598524402DF577C40048E28A /* Clima.entitlements */,
 				ADAA27B0231BBFAF00365194 /* AppDelegate.swift */,
 				ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */,
 				ADAA27CA231BC3FA00365194 /* Model */,
@@ -81,6 +99,7 @@
 				ADAA27B9231BBFB300365194 /* Assets.xcassets */,
 				ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */,
 				ADAA27BE231BBFB300365194 /* Info.plist */,
+				59A073772DD5FE5000BEF3D1 /* GoogleService-Info.plist */,
 				ADAA27C5231BC02B00365194 /* dark_background.pdf */,
 				ADAA27C4231BC02B00365194 /* light_background.pdf */,
 			);
@@ -91,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */,
+				59729CB12D465AF6008D3773 /* APIClient.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -101,6 +121,8 @@
 				ADAA27B6231BBFAF00365194 /* Main.storyboard */,
 				59C37C362D0F103500C8F4DB /* FavoriteViewController.swift */,
 				59C37C372D0F103500C8F4DB /* FavoriteViewController.xib */,
+				597798AF2D34DEEC00F01AF3 /* DetailViewController.swift */,
+				597798B02D34DEEC00F01AF3 /* DetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +181,11 @@
 				Base,
 			);
 			mainGroup = ADAA27A4231BBFAF00365194;
+			packageReferences = (
+				59A073792DD5FF5D00BEF3D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				595603302DEF25D700B9A986 /* XCRemoteSwiftPackageReference "ios_sdk" */,
+				5985243D2DF3120D0048E28A /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */,
+			);
 			productRefGroup = ADAA27AE231BBFAF00365194 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,7 +202,9 @@
 			files = (
 				ADAA27CE231BC87F00365194 /* README.md in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
+				59A073782DD5FE5000BEF3D1 /* GoogleService-Info.plist in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				597798B22D34DEEC00F01AF3 /* DetailViewController.xib in Resources */,
 				59C37C392D0F103500C8F4DB /* FavoriteViewController.xib in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
 				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
@@ -195,7 +224,9 @@
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
 				59C37C382D0F103500C8F4DB /* FavoriteViewController.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
+				597798B12D34DEEC00F01AF3 /* DetailViewController.swift in Sources */,
 				7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */,
+				59729CB22D465AF6008D3773 /* APIClient.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,8 +371,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clima/Clima.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CSW6UY5DJ;
+				DEVELOPMENT_TEAM = 75Z96FJ6QK;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,8 +390,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clima/Clima.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CSW6UY5DJ;
+				DEVELOPMENT_TEAM = 75Z96FJ6QK;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -394,6 +427,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		595603302DEF25D700B9A986 /* XCRemoteSwiftPackageReference "ios_sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adjust/ios_sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		5985243D2DF3120D0048E28A /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework-Static";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.0;
+			};
+		};
+		59A073792DD5FF5D00BEF3D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		595603312DEF25D700B9A986 /* AdjustSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595603302DEF25D700B9A986 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustSdk;
+		};
+		595603332DEF25D700B9A986 /* AdjustWebBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595603302DEF25D700B9A986 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustWebBridge;
+		};
+		5985243E2DF3120D0048E28A /* AppsFlyerLib-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5985243D2DF3120D0048E28A /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */;
+			productName = "AppsFlyerLib-Static";
+		};
+		59A0737A2DD5FF5D00BEF3D1 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 59A073792DD5FF5D00BEF3D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADAA27A5231BBFAF00365194 /* Project object */;
 }
